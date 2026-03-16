@@ -1,6 +1,13 @@
 import random
 import streamlit as st
 
+from logic_utils import (
+    get_range_for_difficulty,
+    parse_guess,
+    check_guess,
+    update_score
+)
+
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
@@ -10,7 +17,7 @@ def get_range_for_difficulty(difficulty: str):
         return 1, 50
     return 1, 100
 
-
+# FIXME: Original code allowed guesses outside the allowed range
 def parse_guess(raw: str, low: int, high: int):
     if raw is None:
         return False, None, "Enter a guess."
@@ -31,7 +38,7 @@ def parse_guess(raw: str, low: int, high: int):
 
     return True, value, None
 
-
+# FIXME: Hint direction was reversed in original app.py logic
 def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
@@ -100,9 +107,13 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
+attempts_left = attempt_limit - st.session_state.attempts
+if attempts_left < 0:
+    attempts_left = 0
+
 st.info(
     f"Guess a number between {low} and {high}. "
-    f"Attempts left: {attempt_limit - st.session_state.attempts}"
+    f"Attempts left: {attempts_left}"
 )
 
 with st.expander("Developer Debug Info"):
