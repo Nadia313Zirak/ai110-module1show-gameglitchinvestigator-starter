@@ -7,6 +7,13 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
   (for example: "the secret number kept changing" or "the hints were backwards").
+  
+  1ST BUG: What was broken first when I started was the fact that my number was in the range of the 'correct' guess but I would get a message that would say "Go lower" or if I put in a high number it would indicate to go higher. 
+  One more bug that I noticed when I tried an edge case, was that the messaeg "Go lower" was desplayed even after I put in a 0 and a negetive number. This was also the case with 'Go higher' but the number is a small number. 
+
+  2ND BUG: Another bug i noticed was the "Attempts left", fo rinstance i woudl have one attempt left but i woudl get a message that would say "out of attempts" 
+
+  3RD BUG: Guess outside allowed range is accepted, the game should only allow guesses between 1 - 100 because the range display "1 to 100" but the game allowed me to enter a guess like 150 which is outside the allowed range, and it still  processed the guess and gave a hint. 
 
 ---
 
